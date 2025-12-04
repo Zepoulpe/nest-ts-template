@@ -9,14 +9,6 @@ export const serverSchema = z.object({
 });
 
 /* --------------------------------------------- */
-/*                   MONGO DB                     */
-/* --------------------------------------------- */
-export const mongoSchema = z.object({
-  uri: z.url(),
-  dbName: z.string(),
-});
-
-/* --------------------------------------------- */
 /*                  CORS CONFIG                   */
 /* --------------------------------------------- */
 export const corsSchema = z.object({
@@ -42,15 +34,6 @@ export const swaggerSchema = z.object({
   version: z.string().default('1.0'),
 });
 
-/* --------------------------------------------- */
-/*              AZURE AUTH CONFIG                 */
-/* --------------------------------------------- */
-export const azureAuthSchema = z.object({
-  tenantId: z.string(),
-  audience: z.string(), // api://xxxxxx
-  issuer: z.url(), // https://login.microsoftonline.com/${tenantId}/v2.0
-  jwksUri: z.url(), // https://login.microsoftonline.com/${tenantId}/discovery/v2.0/keys
-});
 
 /* --------------------------------------------- */
 /*               ROOT CONFIG SCHEMA              */
@@ -59,11 +42,9 @@ export const appConfigSchema = z.object({
   NODE_ENV: z.enum(['local', 'development', 'production', 'test']).default('development'),
 
   server: serverSchema,
-  mongo: mongoSchema,
   cors: corsSchema,
   logger: loggerSchema,
   swagger: swaggerSchema,
-  azure: azureAuthSchema,
 });
 
 export type AppConfig = z.infer<typeof appConfigSchema>;

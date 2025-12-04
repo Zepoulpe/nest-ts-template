@@ -1,4 +1,6 @@
 # 🚀 Nest Starter Template
+![Template Repository](https://img.shields.io/badge/Template-Yes-blue?style=flat-square&logo=github)
+
 **Modern NestJS Project Starter — Fast, Typed, Scalable**
 
 Template minimaliste mais robuste pour démarrer rapidement un projet NestJS **professionnel**, avec :

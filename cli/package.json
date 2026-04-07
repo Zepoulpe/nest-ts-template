@@ -1,0 +1,25 @@
+{
+  "name": "@zepoulpe/create-nest-app",
+  "version": "1.0.0",
+  "description": "CLI pour générer un projet NestJS à partir du template composable",
+  "main": "dist/index.js",
+  "bin": {
+    "create-nest-app": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.9.1",
+    "commander": "^13.1.0",
+    "fs-extra": "^11.3.0",
+    "yaml": "^2.7.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.7",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.3"
+  }
+}

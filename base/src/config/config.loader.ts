@@ -21,11 +21,6 @@ export function loadConfig() {
       host: process.env.HOST,
     },
 
-    mongo: {
-      uri: process.env.MONGO_URI,
-      dbName: process.env.MONGO_DB_NAME,
-    },
-
     cors: {
       enabled: process.env.CORS_ENABLED,
       allowedOrigins: process.env.CORS_ALLOWED_ORIGINS?.split(',') ?? [],
@@ -43,12 +38,7 @@ export function loadConfig() {
       version: process.env.SWAGGER_VERSION,
     },
 
-    azure: {
-      tenantId: process.env.AZURE_TENANT_ID,
-      audience: process.env.AZURE_AUDIENCE,
-      issuer: process.env.AZURE_ISSUER,
-      jwksUri: process.env.AZURE_JWKS_URI,
-    },
+    // @nest-template:loader-mapping
   });
 
   if (!parsed.success) {

@@ -35,6 +35,8 @@ export const swaggerSchema = z.object({
 });
 
 
+// @nest-template:schemas
+
 /* --------------------------------------------- */
 /*               ROOT CONFIG SCHEMA              */
 /* --------------------------------------------- */
@@ -45,6 +47,7 @@ export const appConfigSchema = z.object({
   cors: corsSchema,
   logger: loggerSchema,
   swagger: swaggerSchema,
+  // @nest-template:root-schema
 });
 
 export type AppConfig = z.infer<typeof appConfigSchema>;

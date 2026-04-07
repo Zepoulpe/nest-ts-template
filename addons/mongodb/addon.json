@@ -1,0 +1,20 @@
+{
+  "name": "mongodb",
+  "description": "MongoDB avec Mongoose",
+  "category": "database",
+  "dependencies": {
+    "@nestjs/mongoose": "^11.0.0",
+    "mongoose": "^8.9.0"
+  },
+  "envVars": {
+    "MONGO_URI": "mongodb://localhost:27017",
+    "MONGO_DB_NAME": "mydb"
+  },
+  "imports": [
+    {
+      "module": "DatabaseModule",
+      "path": "./database/database.module"
+    }
+  ],
+  "conflicts": ["psql-typeorm", "psql-prisma"]
+}

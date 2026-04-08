@@ -16,5 +16,5 @@
       "path": "./database/database.module"
     }
   ],
-  "conflicts": ["psql-typeorm", "psql-prisma"]
+  "conflicts": []
 }

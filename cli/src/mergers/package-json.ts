@@ -16,6 +16,9 @@ export async function mergePackageJson(
     if (addon.devDependencies) {
       pkg.devDependencies = { ...pkg.devDependencies, ...addon.devDependencies };
     }
+    if (addon.scripts) {
+      pkg.scripts = { ...pkg.scripts, ...addon.scripts };
+    }
   }
 
   // Sort dependencies alphabetically

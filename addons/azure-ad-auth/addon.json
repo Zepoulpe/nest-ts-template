@@ -1,0 +1,29 @@
+{
+  "name": "azure-ad-auth",
+  "description": "Azure AD OAuth2 avec Passport JWT + RBAC",
+  "category": "auth",
+  "dependencies": {
+    "@nestjs/passport": "^11.0.5",
+    "jwks-rsa": "^3.2.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/passport-jwt": "^4.0.0"
+  },
+  "envVars": {
+    "AZURE_TENANT_ID": "your-tenant-id",
+    "AZURE_AUDIENCE": "api://your-app-id",
+    "AZURE_ISSUER": "https://login.microsoftonline.com/your-tenant-id/v2.0",
+    "AZURE_JWKS_URI": "https://login.microsoftonline.com/your-tenant-id/discovery/v2.0/keys",
+    "AZURE_SCOPES": "api://your-app-id/.default",
+    "AZURE_CLIENT_ID_FRONT": "your-front-client-id"
+  },
+  "imports": [
+    {
+      "module": "AuthModule",
+      "path": "./auth/auth.module"
+    }
+  ],
+  "conflicts": []
+}

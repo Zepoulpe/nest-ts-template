@@ -67,6 +67,14 @@ export async function generate(options: GenerateOptions): Promise<void> {
   pkg.name = projectName;
   await fs.writeJson(pkgPath, pkg, { spaces: 2 });
 
+  // Update project name in README.md
+  const readmePath = path.join(destDir, 'README.md');
+  if (await fs.pathExists(readmePath)) {
+    let readme = await fs.readFile(readmePath, 'utf-8');
+    readme = readme.replace('# nest-ts-template', `# ${projectName}`);
+    await fs.writeFile(readmePath, readme, 'utf-8');
+  }
+
   // 2. Load selected addon manifests
   const allAddons = discoverAddons();
   const selectedManifests: AddonManifest[] = [];

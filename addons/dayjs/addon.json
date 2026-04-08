@@ -1,0 +1,11 @@
+{
+  "name": "dayjs",
+  "description": "Day.js pour la gestion des dates",
+  "category": "feature",
+  "dependencies": {
+    "dayjs": "^1.11.19"
+  },
+  "envVars": {},
+  "imports": [],
+  "conflicts": []
+}

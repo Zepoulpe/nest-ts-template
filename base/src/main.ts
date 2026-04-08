@@ -1,17 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
-import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { setupSwagger } from '@common/swagger/swagger.setup';
-
-declare const module: {
-  hot?: {
-    accept: () => void;
-    dispose: (cb: () => void) => void;
-  };
-};
+import { AppConfigService } from '@config/config.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -22,7 +15,7 @@ async function bootstrap() {
 
   app.useLogger(logger);
 
-  const configService = app.get(ConfigService);
+  const configService = app.get(AppConfigService);
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -34,10 +27,10 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  const allowedOrigins = configService.get<string[]>('cors.allowedOrigins') ?? [];
+  const cors = configService.get('cors');
   app.enableCors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin || cors.allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
       return callback(new Error(`CORS error: origin ${origin} not allowed`));
@@ -46,22 +39,16 @@ async function bootstrap() {
     exposedHeaders: ['Content-Disposition'],
   });
 
-  const swaggerEnabled = configService.get<boolean>('swagger.enabled');
-  if (swaggerEnabled) {
+  const swagger = configService.get('swagger');
+  if (swagger.enabled) {
     setupSwagger(app, logger);
   }
 
   app.enableShutdownHooks();
 
-  const port = configService.get<number>('server.port') ?? 3000;
+  const server = configService.get('server');
+  await app.listen(server.port, '0.0.0.0');
 
-  await app.listen(port, '0.0.0.0');
-
-  logger.log(`Notifier API running on port ${port}`);
-
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
+  logger.log(`API running on port ${server.port}`);
 }
 bootstrap();

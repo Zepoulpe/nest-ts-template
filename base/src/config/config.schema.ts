@@ -29,8 +29,8 @@ export const loggerSchema = z.object({
 /* --------------------------------------------- */
 export const swaggerSchema = z.object({
   enabled: z.coerce.boolean().default(true),
-  title: z.string().default('Notifier API'),
-  description: z.string().default('Notification aggregation service'),
+  title: z.string().default('My API'),
+  description: z.string().default('API description'),
   version: z.string().default('1.0'),
 });
 

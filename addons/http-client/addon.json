@@ -1,0 +1,12 @@
+{
+  "name": "http-client",
+  "description": "HTTP Client avec Axios",
+  "category": "feature",
+  "dependencies": {
+    "@nestjs/axios": "^4.0.1",
+    "axios": "^1.13.2"
+  },
+  "envVars": {},
+  "imports": [],
+  "conflicts": []
+}
